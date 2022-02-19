@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="Fahrenheit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edtFahrenheit"
+        android:textSize="24sp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="Celsius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edtCelsius"
+        android:textSize="24sp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <LinearLayout
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    
+        <Button
+            android:id="@+id/btnConvertToC"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:text="Convert to celsius"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="5"/>
+
+        <Button
+            android:id="@+id/btnConvertToF"
+            android:textSize="16sp"
+            android:text="Convert to fahrenheit"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="5"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnClear"
+            android:textSize="16sp"
+            android:text="Clear"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="5"/>
+
+    </LinearLayout>
+
+</LinearLayout>
