@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/textviewNamduonglich"
+        android:text="Năm dương lịch:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edtYear"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true" />
+
+    <Button
+        android:id="@+id/btnChuyendoi"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtYear"
+        android:layout_alignParentRight="true"
+        android:text="Chuyển đổi" />
+
+    <TextView
+        android:id="@+id/textviewNamamlich"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnChuyendoi"
+        android:text="Năm âm lịch" />
+
+    <TextView
+        android:id="@+id/txtKetqua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnChuyendoi"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/textviewNamamlich"
+        android:text="Kết quả" />
+
+</RelativeLayout>
