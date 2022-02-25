@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:textSize="20sp"
+        android:background="@color/purple_200"
+        android:gravity="center"
+        android:text="Chế độ máy vs máy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="15sp"
+        android:text="Máy 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img1"
+            android:src="@drawable/matlunglabai"
+            android:layout_width="80dp"
+            android:layout_height="140dp"/>
+
+        <ImageView
+            android:id="@+id/img2"
+            android:src="@drawable/matlunglabai"
+            android:layout_width="80dp"
+            android:layout_height="140dp"/>
+
+        <ImageView
+            android:id="@+id/img3"
+            android:src="@drawable/matlunglabai"
+            android:layout_width="80dp"
+            android:layout_height="140dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:textColor="#F44336"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:text="vs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:textSize="15sp"
+        android:text="Máy 2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img4"
+            android:src="@drawable/matlunglabai"
+            android:layout_width="80dp"
+            android:layout_height="140dp"/>
+
+        <ImageView
+            android:id="@+id/img5"
+            android:src="@drawable/matlunglabai"
+            android:layout_width="80dp"
+            android:layout_height="140dp"/>
+
+        <ImageView
+            android:id="@+id/img6"
+            android:src="@drawable/matlunglabai"
+            android:layout_width="80dp"
+            android:layout_height="140dp"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edtChonThoiGian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Nhập thời gian"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/txtKetQuaMay1"
+        android:text="MÁY 1:"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/txtKetQuaMay2"
+        android:text="MÁY 2:"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnBatDau"
+            android:layout_marginRight="10dp"
+            android:text="Bắt đầu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnChoiLai"
+            android:text="Làm mới trận đấu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtTiSoMay1"
+        android:textSize="16sp"
+        android:text="Tỉ số máy 1: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/txtTiSoMay2"
+        android:textSize="16sp"
+        android:text="Tỉ số máy 2: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
