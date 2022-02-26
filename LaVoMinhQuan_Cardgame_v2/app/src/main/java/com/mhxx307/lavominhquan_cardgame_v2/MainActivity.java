@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView img1, img2, img3, img4, img5, img6;
     Button btnBatDau, btnChoiLai;
     TextView txtKetQuaMay1, txtKetQuaMay2, txtTiSoMay1, txtTiSoMay2;
-    EditText edtChonThoiGian;
+    EditText edtChonThoiGian, edtChonBuocNhay;
     int score1 = 0, score2 = 0;
 
     @Override
@@ -52,9 +52,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String str_second = edtChonThoiGian.getText().toString().trim();
-                if (!str_second.equals("")) {
+                String str_secondBuocNhay = edtChonBuocNhay.getText().toString().trim();
+                if (!str_second.equals("") && !str_secondBuocNhay.equals("")) {
                     int second = Integer.parseInt(str_second);
-                    handler(second);
+                    int secondBuocNhay = Integer.parseInt(str_secondBuocNhay);
+                    handler(second, secondBuocNhay);
                 } else {
                     Toast.makeText(MainActivity.this, "Cần phải chọn thời gian cho máy chơi", Toast.LENGTH_SHORT).show();
                 }
@@ -84,10 +86,11 @@ public class MainActivity extends AppCompatActivity {
         txtTiSoMay1 = findViewById(R.id.txtTiSoMay1);
         txtTiSoMay2 = findViewById(R.id.txtTiSoMay2);
         edtChonThoiGian = findViewById(R.id.edtChonThoiGian);
+        edtChonBuocNhay = findViewById(R.id.edtChonBuocNhay);
     }
 
-    private void handler(int second) {
-        CountDownTimer countDownTimer = new CountDownTimer(second * 1000, 3000) {
+    private void handler(int second, int secondBuocNhay) {
+        CountDownTimer countDownTimer = new CountDownTimer(second * 1000, secondBuocNhay * 1000) {
             @Override
             public void onTick(long l) {
                 int[] valueMachine1 = layBaSoNgauNhien(0, 51);
