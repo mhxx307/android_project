@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">LaVoMinhQuan_TK2_ListviewCustomize</string>
+
+    <string-array name="department_array">
+        <item>Phòng kế toán</item>
+        <item>Phòng nhân sự</item>
+        <item>Phòng quản trị kinh doanh</item>
+        <item>Trung tâm phần mềm</item>
+        <item>Phòng marketing</item>
+    </string-array>
+</resources>

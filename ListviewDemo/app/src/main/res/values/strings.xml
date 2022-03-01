@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ListviewDemo</string>
+    <string-array name="traicay_array">
+        <item>Tao</item>
+        <item>Chuoi</item>
+        <item>Oi</item>
+        <item>Xoai</item>
+    </string-array>
+</resources>

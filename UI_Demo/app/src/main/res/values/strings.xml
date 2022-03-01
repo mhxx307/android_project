@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">UI_Demo</string>
+    <string-array name="department_list">
+        <item>Phòng kế toán</item>
+        <item>Phòng tiếp thị</item>
+        <item>Phòng quản trị kinh doanh</item>
+        <item>Phòng kĩ thuật</item>
+        <item>Bộ phận quản trị</item>
+        <item>Trung tâm phần mềm</item>
+    </string-array>
+</resources>
