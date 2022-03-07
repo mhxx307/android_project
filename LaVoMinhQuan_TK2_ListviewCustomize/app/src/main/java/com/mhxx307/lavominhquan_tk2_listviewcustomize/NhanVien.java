@@ -5,11 +5,11 @@ public class NhanVien {
     private String fullName;
     private String gender;
     private String department;
-    private int image;
+    private byte[] image;
 
     public NhanVien(){}
 
-    public NhanVien(String id, String fullName, String gender, String department, int image) {
+    public NhanVien(String id, String fullName, String gender, String department, byte[] image) {
         this.id = id;
         this.fullName = fullName;
         this.gender = gender;
@@ -49,22 +49,11 @@ public class NhanVien {
         this.department = department;
     }
 
-    public int getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    @Override
-    public String toString() {
-        return "NhanVien{" +
-                "id='" + id + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", department='" + department + '\'' +
-                ", image=" + image +
-                '}';
     }
 }

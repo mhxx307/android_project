@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     List<NhanVien> listNhanVien = new ArrayList<NhanVien>();
     String[] listPhongBan;
     String phongBan;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,21 +75,38 @@ public class MainActivity extends AppCompatActivity {
                 String maSo = edtMaSo.getText().toString();
                 String hoTen = edtHoTen.getText().toString();
                 String gioiTinh = rdgGioiTinh.getCheckedRadioButtonId() == R.id.rdb_Nam ? "Nam" : "Nữ";
-                int imgNhanVienID = getResources().getIdentifier((String) imgNhanVien.getTag(), "drawable", getPackageName());
+                
+                Bitmap bitmap = ((BitmapDrawable) imgNhanVien.getDrawable()).getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+//                bitmap.recycle();
 
-                NhanVien nv = new NhanVien();
-                nv.setId(maSo);
-                nv.setFullName(hoTen);
-                nv.setGender(gioiTinh);
-                nv.setDepartment(phongBan);
-                nv.setImage(imgNhanVienID);
+                if (kiemTraChinhQuy()) {
+                    NhanVien nv = new NhanVien();
+                    nv.setId(maSo);
+                    nv.setFullName(hoTen);
+                    nv.setGender(gioiTinh);
+                    nv.setDepartment(phongBan);
+                    nv.setImage(byteArray);
 
-                listNhanVien.add(nv);
-                AdapterNhanVien adapter = new AdapterNhanVien(MainActivity.this, R.layout.list_nhanvien_custom, listNhanVien);
-                listviewNhanVien.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                    listNhanVien.add(nv);
+                    AdapterNhanVien adapter = new AdapterNhanVien(MainActivity.this, R.layout.list_nhanvien_custom, listNhanVien);
+                    listviewNhanVien.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+
+                    lamMoiText();
+                }
+
             }
         });
+    }
+
+    private void lamMoiText() {
+        edtMaSo.setText("");
+        edtHoTen.setText("");
+        rdb_Nam.isChecked();
+        imgNhanVien.setImageResource(android.R.color.transparent);
     }
 
     private void anhXa() {
@@ -134,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     imgNhanVien.setImageBitmap(bitmap);
-                    imgNhanVien.setTag("imgnv1");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -142,6 +159,18 @@ public class MainActivity extends AppCompatActivity {
         };
         TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(MainActivity.this).setOnImageSelectedListener(listener).create();
         tedBottomPicker.show(getSupportFragmentManager());
+    }
+
+    private boolean kiemTraChinhQuy() {
+        if (edtMaSo.getText().toString().equals("")) {
+            Toast.makeText(MainActivity.this, "Khong duoc de trong ma so", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (edtHoTen.getText().toString().equals("")) {
+            Toast.makeText(MainActivity.this, "Khong duoc de trong ho ten", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 }

@@ -1,6 +1,8 @@
 package com.mhxx307.lavominhquan_tk2_listviewcustomize;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,11 +54,13 @@ public class AdapterNhanVien extends BaseAdapter {
         // gán giá trị
         NhanVien nhanVien = listNhanVien.get(i);
 
-        imgNhanVien.setImageResource(nhanVien.getImage());
-        txtMaSo.setText(nhanVien.getId());
-        txtHoTen.setText(nhanVien.getFullName());
-        txtGioiTinh.setText(nhanVien.getGender());
-        txtPhongBan.setText(nhanVien.getDepartment());
+        Bitmap bitmap = BitmapFactory.decodeByteArray(nhanVien.getImage(), 0, nhanVien.getImage().length);
+        imgNhanVien.setImageBitmap(bitmap);
+
+        txtMaSo.setText("Mã số: " + nhanVien.getId());
+        txtHoTen.setText("Họ tên: " + nhanVien.getFullName());
+        txtGioiTinh.setText("Giới tính: " + nhanVien.getGender());
+        txtPhongBan.setText("Phòng ban: " + nhanVien.getDepartment());
 
         return view;
     }

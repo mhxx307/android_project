@@ -78,9 +78,12 @@
 
     <ImageView
         android:id="@+id/imgNhanVien"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:background="@drawable/img_stroke"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_baseline_add_photo_alternate_24"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="5dp" />
 
     <Button
         android:id="@+id/btnThemNhanVien"

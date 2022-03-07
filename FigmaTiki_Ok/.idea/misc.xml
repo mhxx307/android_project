@@ -3,9 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android_project/LaVoMinhQuan_TK2_ListviewCustomize/app/src/main/res/drawable/img_stroke.xml" value="0.2203125" />
-        <entry key="..\:/Android_project/LaVoMinhQuan_TK2_ListviewCustomize/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Android_project/LaVoMinhQuan_TK2_ListviewCustomize/app/src/main/res/layout/list_nhanvien_custom.xml" value="0.25" />
+        <entry key="..\:/Android_project/FigmaTiki_Ok/app/src/main/res/drawable/btndathang.xml" value="0.2203125" />
+        <entry key="..\:/Android_project/FigmaTiki_Ok/app/src/main/res/drawable/btngiamgia.xml" value="0.2203125" />
+        <entry key="..\:/Android_project/FigmaTiki_Ok/app/src/main/res/layout/activity_main.xml" value="0.33" />
       </map>
     </option>
   </component>
