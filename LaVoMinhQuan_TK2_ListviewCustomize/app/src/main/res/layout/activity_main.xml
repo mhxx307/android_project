@@ -85,10 +85,41 @@
         android:layout_height="150dp"
         android:layout_marginTop="5dp" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnThemNhanVien"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Thêm nhân viên" />
+
+        <Button
+            android:id="@+id/btnXoaNhanVien"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Xóa nhân viên" />
+
+        <Button
+            android:id="@+id/btnCapNhatNhanVien"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Cập nhật nhân viên" />
+
+    </LinearLayout>
+
     <Button
-        android:id="@+id/btnThemNhanVien"
-        android:layout_marginTop="30dp"
-        android:text="Thêm nhân viên"
+        android:layout_marginLeft="10dp"
+        android:text="Lưu"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -96,5 +127,7 @@
         android:id="@+id/listviewNhanVien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
 
 </LinearLayout>

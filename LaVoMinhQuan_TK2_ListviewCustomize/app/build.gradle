@@ -40,4 +40,6 @@ dependencies {
     implementation 'gun0912.ted:tedbottompicker:1.2.6'
     //ted permisson
     implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+
+    implementation 'com.google.code.gson:gson:2.8.8'
 }

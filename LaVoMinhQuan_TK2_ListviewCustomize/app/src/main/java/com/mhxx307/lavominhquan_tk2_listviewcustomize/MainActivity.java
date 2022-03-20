@@ -1,13 +1,18 @@
 package com.mhxx307.lavominhquan_tk2_listviewcustomize;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,13 +25,17 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import gun0912.tedbottompicker.TedBottomPicker;
 
@@ -35,13 +44,16 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup rdgGioiTinh;
     RadioButton rdb_Nam, rdb_Nu;
     Spinner spinner_PhongBan;
-    Button btnChooseImg, btnThemNhanVien;
+    Button btnChooseImg, btnThemNhanVien, btnXoaNhanVien, btnCapNhat, btnSave;
     ImageView imgNhanVien;
     ListView listviewNhanVien;
+    AdapterNhanVien adapter;
 
     List<NhanVien> listNhanVien = new ArrayList<NhanVien>();
     String[] listPhongBan;
     String phongBan;
+    int position;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         anhXa();
+        sharedPreferences = getSharedPreferences("DanhSachNhanVien", MODE_PRIVATE);
+
+        loadListNhanVien();
 
         spinner_PhongBan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -91,13 +106,82 @@ public class MainActivity extends AppCompatActivity {
                     nv.setImage(byteArray);
 
                     listNhanVien.add(nv);
-                    AdapterNhanVien adapter = new AdapterNhanVien(MainActivity.this, R.layout.list_nhanvien_custom, listNhanVien);
+                    adapter = new AdapterNhanVien(MainActivity.this, R.layout.list_nhanvien_custom, listNhanVien);
                     listviewNhanVien.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
                     lamMoiText();
                 }
 
+            }
+        });
+
+        listviewNhanVien.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                position = i;
+                NhanVien nv = listNhanVien.get(i);
+                edtMaSo.setText(nv.getId());
+                edtHoTen.setText(nv.getFullName());
+                if (nv.getGender().equals("Nam")) {
+                    rdb_Nam.setChecked(true);
+                    rdb_Nu.setChecked(false);
+                } else if (nv.getGender().equals("Nữ")) {
+                    rdb_Nu.setChecked(true);
+                    rdb_Nam.setChecked(false);
+                }
+
+                for (int index = 0; index < listPhongBan.length; index++) {
+                    if(spinner_PhongBan.getItemAtPosition(index).equals(nv.getDepartment())) {
+                        spinner_PhongBan.setSelection(index);
+                    }
+                }
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(nv.getImage(), 0, nv.getImage().length);
+                imgNhanVien.setImageBitmap(bitmap);
+            }
+        });
+
+        btnXoaNhanVien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listNhanVien.remove(position);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        btnCapNhat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NhanVien nv = listNhanVien.get(position);
+
+                String ma = edtMaSo.getText().toString();
+                String ten = edtHoTen.getText().toString();
+                String gioiTinh = rdgGioiTinh.getCheckedRadioButtonId() == R.id.rdb_Nam ? "Nam" : "Nữ";
+                String phongBan = (String) spinner_PhongBan.getSelectedItem();
+                Bitmap bitmap = ((BitmapDrawable) imgNhanVien.getDrawable()).getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                nv.setId(ma);
+                nv.setFullName(ten);
+                nv.setGender(gioiTinh);
+                nv.setDepartment(phongBan);
+                nv.setImage(byteArray);
+
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(listNhanVien);
+                editor.putString("listNhanVien", json);
+                editor.commit();
             }
         });
     }
@@ -118,6 +202,9 @@ public class MainActivity extends AppCompatActivity {
         spinner_PhongBan = findViewById(R.id.spinner_PhongBan);
         btnChooseImg = findViewById(R.id.btn_selectImg);
         btnThemNhanVien = findViewById(R.id.btnThemNhanVien);
+        btnXoaNhanVien = findViewById(R.id.btnXoaNhanVien);
+        btnCapNhat = findViewById(R.id.btnCapNhatNhanVien);
+        btnSave = findViewById(R.id.btnSave);
         imgNhanVien = findViewById(R.id.imgNhanVien);
         listviewNhanVien = findViewById(R.id.listviewNhanVien);
 
@@ -171,6 +258,28 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    private void loadListNhanVien() {
+        if (getList() != null) {
+            for (NhanVien nv : getList()) {
+                listNhanVien.add(nv);
+            }
+            adapter = new AdapterNhanVien(MainActivity.this, R.layout.list_nhanvien_custom, listNhanVien);
+            listviewNhanVien.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    public List<NhanVien> getList() {
+        List<NhanVien> arrayItems = null;
+        String serializedObject = sharedPreferences.getString("listNhanVien", null);
+        if (serializedObject != null) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<NhanVien>>(){}.getType();
+            arrayItems = gson.fromJson(serializedObject, type);
+        }
+        return arrayItems;
     }
 
 }
