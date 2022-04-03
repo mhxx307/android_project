@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Xem danh sách"
+          android:id="@+id/mnList"
+        >
+        <menu>
+            <item android:title="Danh sách sinh viên"
+                  android:id="@+id/mnListNhanVien"
+                />
+            <item android:title="Danh sách lớp học"
+                android:id="@+id/mnListLopHoc"
+                />
+        </menu>
+    </item>
+
+    <item
+        android:title="Thêm"
+        android:id="@+id/mnAdd"
+        />
+    <item
+        android:title="Sửa"
+        android:id="@+id/mnUpdate"
+        />
+    <item
+        android:title="Xóa"
+        android:id="@+id/mnDelete"
+        />
+</menu>
