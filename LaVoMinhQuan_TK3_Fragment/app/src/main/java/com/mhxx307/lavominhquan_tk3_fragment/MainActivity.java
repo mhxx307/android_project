@@ -13,6 +13,19 @@ public class MainActivity extends AppCompatActivity implements ProductDataAbstra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // get FragmentProductInfo when activity is landscape
+        FragmentProductInfo fragmentProductInfo = (FragmentProductInfo) getFragmentManager().findFragmentById(R.id.fragment_product_info);
+
+        Configuration configuration = getResources().getConfiguration();
+        // if application in activity2 and change orientation from horizontal to LANDSCAPE
+        // First: product from secondIntent in ProductInfoActivity - when orientation is LANDSCAPE
+        Product product = (Product) getIntent().getSerializableExtra("productInfoFromActivity");
+
+        // Second: if activity is landscape(HAVE 2 FRAGMENTS, fragment_list_product & fragment_product_info): use setInfo in FragmentProductInfo class
+        if (product != null && fragmentProductInfo != null && configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            fragmentProductInfo.setInfo(product);
+        }
     }
 
     @Override
@@ -25,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements ProductDataAbstra
         // if activity is landscape(HAVE 2 FRAGMENTS, fragment_list_product & fragment_product_info): use setInfo in FragmentProductInfo class
         if (fragmentProductInfo != null && configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             fragmentProductInfo.setInfo(product);
-        }else {
+        } else {
             // if activity not landscape(have 1 fragment, fragment_list_product): intent to activity 2
             Intent intent = new Intent(MainActivity.this, ProductInfoActivity.class);
             intent.putExtra("product", product);

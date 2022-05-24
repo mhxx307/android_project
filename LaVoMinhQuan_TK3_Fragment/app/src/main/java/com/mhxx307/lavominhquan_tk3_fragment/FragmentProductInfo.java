@@ -1,6 +1,8 @@
 package com.mhxx307.lavominhquan_tk3_fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,4 @@ public class FragmentProductInfo extends Fragment {
         txtContent.setText(product.getThongTinSanPham());
         txtPrice.setText("$"+product.getGiaSanPham());
     }
-
-
 }
